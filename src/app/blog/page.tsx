@@ -1,40 +1,40 @@
-"use client"
+"use client";
 
-import Card from "@/components/Card"
-import { Metadata } from "next"
-import { Suspense, useEffect, useState } from "react"
-import Loading from "./loading"
+import Card from "@/components/Card";
+import { Suspense, useEffect, useState } from "react";
+import Loading from "./loading";
+import { useDispatch, useSelector } from "react-redux";
+import { RootStore } from "@/services";
+import { Blog, clientListBlog } from "@/services/blog";
 
 const Page = () => {
-    const listBlog = async () => {
-        await fetch('/api', {
-            method: "GET"
-        })
-    }
-    const [blogs, setBlogs] = useState<any[]>([1,2,3,4,5])
+  const data = useSelector((state: RootStore) => state.blog);
+  //   const [blogs, setBlogs] = useState<Blog[]>([]);
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        listBlog().then(res => console.log(res))
-        // return {}
-    }, [])
+  useEffect(() => {
+    dispatch(clientListBlog());
+  }, []);
 
-    return (
-        <div className="w-full min-h-full py-32">
-            <div className="flex justify-center pb-10">
-                <h1 className="text-xl h-2">Blog</h1>
-            </div>
-            <div className="flex flex-wrap gap-4 justify-center mx-5">
-                {blogs.map((v: any, i: number) => {
-                    return (
-                        <Suspense fallback={<Loading variant="square" height="md"/>} key={i}>
-                            <Card />
-                        </Suspense>
-                    )
-                })}
-                
-            </div>
-        </div>
-    )
-}
+  return (
+    <div className="w-full">
+      <div className="flex justify-center py-10">
+        <h1 className="text-xl">Blog</h1>
+      </div>
+      <div className="flex w-full flex-wrap justify-center gap-[2.75rem] px-10">
+        {data.data?.map((v: Blog, i: number) => {
+          return (
+            <Suspense
+              fallback={<Loading variant="square" height="md" />}
+              key={i}
+            >
+              <Card className="basis-full md:basis-1/4" blog={v} />
+            </Suspense>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
 
-export default Page
+export default Page;

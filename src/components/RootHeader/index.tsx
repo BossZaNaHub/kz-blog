@@ -1,24 +1,46 @@
-"use client"
-import { LuDog, LuLibrary, LuPhone } from "react-icons/lu"
-import { usePathname, useRouter } from 'next/navigation'
-import Navigation, { Menu } from "./Navigation"
-import { useNavigationEvent } from '@/hooks/useNavigation'
-import { Suspense, useEffect, useState } from "react"
+"use client";
+import { LuDog, LuLibrary, LuPhone } from "react-icons/lu";
+import { usePathname } from "next/navigation";
+import Navigation, { Menu } from "./Navigation";
+import { useEffect, useState } from "react";
 
-const menu: Menu[] = [{name: '', path: '/blog', icon: <LuLibrary  />}, {name: '', path: '/', icon: <LuDog  />}, {name: '', path: '/contact', icon: <LuPhone  />}]
+const menu: Menu[] = [
+  { name: "", path: "/blog", icon: <LuLibrary /> },
+  { name: "", path: "/", icon: <LuDog /> },
+  { name: "", path: "/contact", icon: <LuPhone /> },
+];
 
 const Header = () => {
-    const pathname = usePathname()
+  const pathname = usePathname();
+  const [scrollY, setScrollY] = useState<number>(0);
 
-    if (!pathname.includes("/dashboard")) {
-        return (
-            <header className="sticky top-5 z-50 flex md:w-1/2 w-full shadow-md bg-dashboard md:mx-auto rounded-full px-10 mx-auto">
-                <div className="flex flex-grow items-center justify-between px-4 py-4 shadow-2 md:px-6 2xl:px-10">
-                    <Navigation menu={menu} />
-                </div>
-            </header>
-        )
-    }
-}
+  useEffect(() => {
+    const handleScrollY = () => {
+      setScrollY(window.scrollY);
+    };
 
-export default Header
+    window.addEventListener("scroll", handleScrollY);
+
+    return () => {
+      window.removeEventListener("scroll", handleScrollY);
+    };
+  }, [scrollY]);
+
+  if (!pathname.includes("/dashboard")) {
+    return (
+      <header
+        className={`sticky top-0 z-50 mx-auto flex w-11/12 bg-transparent px-10 md:mx-auto md:max-w-screen-md ${
+          scrollY >= 50
+            ? "bg-dashboard-1 translate-y-1.5 rounded-full shadow-md"
+            : ""
+        }`}
+      >
+        <div className="shadow-2 flex flex-grow items-center justify-between py-2.5 md:px-6 2xl:px-10">
+          <Navigation menu={menu} />
+        </div>
+      </header>
+    );
+  }
+};
+
+export default Header;
