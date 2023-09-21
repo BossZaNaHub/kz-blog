@@ -21,16 +21,14 @@ const blogSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(clientListBlog.pending, (state) => {
-        // console.log('pending: ', state)
         state.isLoading = true;
         state.error = null;
         state.data = null;
       })
       .addCase(clientListBlog.fulfilled, (state, action) => {
-        // console.log('fulfilled: ', state, action.payload)
         state.isLoading = false;
         const { payload } = action;
-        // console.log("payload: ", payload);
+        console.log("payload: ", payload);
         if (payload.code == 0) {
           let data = payload.data.blogs as Blog[];
           state.data = data;

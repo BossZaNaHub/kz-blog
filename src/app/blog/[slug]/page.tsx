@@ -5,8 +5,7 @@ import { Response as BaseResp } from "@/services/common";
 import { environmet } from "@/services/environment";
 import { redirect } from "next/navigation";
 import ButtonShare from "@/components/ButtonShare/ButtonShare";
-import { Metadata, ResolvingMetadata } from "next";
-import Loading from "@/components/Loading";
+import { Metadata } from "next";
 import { LuLoader } from "react-icons/lu";
 import Image from "next/image";
 
@@ -19,9 +18,7 @@ type MetaProps = {
 };
 
 const getBlogBySlug = cache(async (slug: string) => {
-  const response = await api.get(
-    `${environmet.api_url}/api/v1/client/blog/${slug}`
-  );
+  const response = await api.get(`${environmet.api_url}/api/v1/client/blog/${slug}`);
 
   if (!response.ok) {
     redirect("/404");
@@ -51,15 +48,13 @@ const Page = async ({ params }: Props) => {
   generateMetadata({ blog });
 
   return (
-    <div className="mx-auto flex w-full max-w-screen-md justify-center pt-10">
-      <div className="mx-5 md:mx-0">
-        <div className="py-10">
+    <div className="mx-auto flex w-full max-w-screen-md justify-center p-5 text-black dark:text-white">
+      <div className="">
+        <div className="py-5">
           <h1 className="text-4xl">{blog.name}</h1>
-          <div className="text-gray-500">{"test short description"}</div>
+          <div className="text-gray-500">{blog.short_description}</div>
         </div>
-        <div className="">
-          <ButtonShare />
-        </div>
+        <ButtonShare blog={blog} />
         <Suspense fallback={<LuLoader />}>
           <Image
             className="mx-auto my-5 w-full"
@@ -69,10 +64,7 @@ const Page = async ({ params }: Props) => {
             height={376}
           />
         </Suspense>
-        <div
-          className="pt-10"
-          dangerouslySetInnerHTML={{ __html: blog.content }}
-        />
+        <div className="pt-10" dangerouslySetInnerHTML={{ __html: blog.content }} />
       </div>
     </div>
   );

@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* background: linear-gradient(180deg, #78A5FC 0%, rgba(120, 165, 252, 0.50) 100%);
-background-clip: text;
--webkit-background-clip: text;
--webkit-text-fill-color: transparent; */
-
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -31,18 +26,10 @@ background-clip: text;
 
 @keyframes buttonGradient {
   from {
-    background: linear-gradient(
-      145deg,
-      rgb(var(--text-start-rgb)) 0%,
-      rgb(var(--text-end-rgb)) 100%
-    );
+    background: linear-gradient(145deg, rgb(var(--text-start-rgb)) 0%, rgb(var(--text-end-rgb)) 100%);
   }
   to {
-    background: linear-gradient(
-      145deg,
-      rgb(var(--text-end-rgb)) 0%,
-      rgb(var(--text-start-rgb)) 100%
-    );
+    background: linear-gradient(145deg, rgb(var(--text-end-rgb)) 0%, rgb(var(--text-start-rgb)) 100%);
   }
 }
 
@@ -125,13 +112,17 @@ background-clip: text;
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 193, 211, 254;
-  --background-end-rgb: 171, 196, 255;
+  --background-end-rgb: 178, 201, 255;
   --text-start-rgb: 183, 207, 255;
   --text-end-rgb: 98, 134, 220;
-  /* --foreground-rgb: 0, 0, 0; */
-  /* --background-start-rgb: 214, 219, 220; */
-  /* --background-end-rgb: 255, 255, 255; */
-  /* --background-end-rgb: 120, 165, 252; */
+}
+
+.dark {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 29, 38, 125;
+  --background-end-rgb: 12, 19, 79;
+  --text-start-rgb: 120, 165, 252;
+  --text-end-rgb: 120, 165, 252;
 }
 
 .bg-dashboard {
@@ -139,31 +130,21 @@ background-clip: text;
 }
 
 .bg-primary {
-  background: linear-gradient(
-    90deg,
-    rgb(var(--background-start-rgb)) 0%,
-    rgba(var(--background-end-rgb), 1) 100%
-  );
+  background: linear-gradient(90deg, rgb(var(--background-start-rgb)) 0%, rgba(var(--background-end-rgb), 1) 100%);
 }
 
 .bg-dashboard-1 {
   background-color: rgba(var(--background-start-rgb), 0.65);
   border: 1px solid var(--tw-shadow-color);
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color),
-    0 2px 4px -2px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
-    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   backdrop-filter: blur(20px);
   transition: all 350ms ease-in-out;
 }
 
 .bg-primary {
-  background: linear-gradient(
-    90deg,
-    rgb(var(--background-start-rgb)) 0%,
-    rgba(var(--background-end-rgb), 1) 100%
-  );
+  background: linear-gradient(90deg, rgb(var(--background-start-rgb)) 0%, rgba(var(--background-end-rgb), 1) 100%);
 }
 
 .bg-card-transition {
@@ -188,51 +169,40 @@ background-clip: text;
 }
 
 .bg-card-transition > img:hover::before {
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgba(var(--background-end-rgb), 0.55)
-    )
+  background: linear-gradient(to bottom, transparent, rgba(var(--background-end-rgb), 0.55))
     rgba(var(--background-start-rgb), 0.55);
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  /* :root, */
+  .dark {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 29, 38, 125;
     --background-end-rgb: 12, 19, 79;
     --text-start-rgb: 120, 165, 252;
     --text-end-rgb: 120, 165, 252;
-    /* --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0; */
-  }
-  .text-primary {
-    color: rgb(var(--foreground-rgb));
-    background: rgb(var(--foreground-rgb));
-    /* background-clip: color; */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .text-primary::placeholder {
-    color: rgb(var(--foreground-rgb));
   }
 
-  .bg-dashboard {
-    background-color: rgba(var(--background-start-rgb), 1);
-  }
+  /* .text-primary {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--foreground-rgb));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-primary::placeholder {
+  color: rgb(var(--foreground-rgb));
+}
+
+.bg-dashboard {
+  background-color: rgba(var(--background-start-rgb), 1);
+} */
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  /* background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb)); */
   font-family: var(--font-inter);
   animation: slide 200ms linear;
-  /* transition: transform 350ms ease; */
 }
 
 h1,
@@ -291,21 +261,13 @@ h6 {
 }
 
 .bg-root {
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
     /* rgb(var(--background-end-rgb)) */ rgb(var(--background-start-rgb));
 }
 
 .border-gradient {
   border-width: 1px;
-  border-image: linear-gradient(
-    to left,
-    rgb(var(--text-start-rgb)) 0%,
-    rgba(var(--text-end-rgb), 0.5) 100%
-  );
+  border-image: linear-gradient(to left, rgb(var(--text-start-rgb)) 0%, rgba(var(--text-end-rgb), 0.5) 100%);
   border-image-slice: 1;
 }
 
@@ -340,11 +302,7 @@ h6 {
 }
 
 .btn-primary {
-  background: linear-gradient(
-    145deg,
-    rgb(var(--text-start-rgb)) 0%,
-    rgb(var(--text-end-rgb)) 100%
-  );
+  background: linear-gradient(145deg, rgb(var(--text-start-rgb)) 0%, rgb(var(--text-end-rgb)) 100%);
   padding: 0.325rem 0.675rem;
   border-radius: 0.15rem;
   transition: background 300ms linear;

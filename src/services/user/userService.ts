@@ -1,26 +1,34 @@
-import { createAsyncThunk, isRejectedWithValue } from '@reduxjs/toolkit'
-import api from '../api'
-import { User, Login, UserAuthentication } from './model'
-import { Response as BaseResp } from '../common'
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
-const clientLogin = createAsyncThunk(
-    'login/fetch', 
-    async (loginData: Login) => {
-        try {
-            const response = await api.post('/v1/client/login', loginData)
-            return response.data as BaseResp
-        } catch (error) {
-            throw error   
-        }
-    }
-)
+import { Login } from "./model";
+import { Response as BaseResp } from "../common";
+import client from "../api/api";
 
-const userProfile = createAsyncThunk('profile/fetch', async () => {
-    const response = await api.get('/v1/user/profile')
-    if (!response.ok) {
-        throw new Error(response.problem)
-    }
-    return response.data
-})
+const clientLogin = createAsyncThunk("login/fetch", async (loginData: Login) => {
+  const response = await client.post("/v1/client/login", loginData);
+  if (!response.ok) {
+    let e: BaseResp = {
+      data: null,
+      code: response.status ? response.status : 500,
+      message: `${response.problem} ${response.originalError}`,
+    };
+    return e;
+  } else {
+    return response.data as BaseResp;
+  }
+});
 
-export { clientLogin, userProfile }
+const userProfile = createAsyncThunk("profile/fetch", async () => {
+  const response = await client.get("/v1/user/profile");
+  if (!response.ok) {
+    let e: BaseResp = {
+      data: null,
+      code: response.status ? response.status : 500,
+      message: `${response.problem} ${response.originalError}`,
+    };
+    return e;
+  }
+  return response.data as BaseResp;
+});
+
+export { clientLogin, userProfile };

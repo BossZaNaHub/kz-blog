@@ -3,6 +3,7 @@
 import { FC } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { IconBaseProps } from "react-icons";
+import DarkModeSwitcher from "../Header/DarkModeSwitcher";
 
 interface NavigationMenu {
   menu: Menu[];
@@ -26,20 +27,20 @@ const Navigation: FC<NavigationMenu> = (props) => {
             key={i}
             className={`${
               pathname === m.path
-                ? "bg-white shadow-xl dark:bg-slate-800"
-                : "hover:bg-gray-100 dark:hover:bg-slate-800"
-            } cursor-pointer rounded-full p-3 transition-colors`}
+                ? "bg-white shadow-md dark:bg-slate-800"
+                : "hover:bg-gray-100 dark:hover:bg-slate-800 dark:hover:text-white"
+            } cursor-pointer rounded-full p-3 transition-colors dark:text-white`}
+            onClick={() => {
+              router.push(m.path);
+            }}
           >
-            <div
-              onClick={() => {
-                router.push(m.path);
-              }}
-            >
-              {m.icon && <span className="text-2xl">{m.icon}</span>}
-            </div>
+            <div>{m.icon && <span className="text-2xl">{m.icon}</span>}</div>
           </div>
         );
       })}
+      {/* <div> */}
+      <DarkModeSwitcher />
+      {/* </div> */}
     </>
   );
 };

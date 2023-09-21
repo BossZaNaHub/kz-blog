@@ -1,19 +1,24 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { Response as BaseResp } from "../common";
-import api from "../api";
+import client from "../api/api";
 
 const clientListBlog = createAsyncThunk("blog/fetch", async () => {
-  try {
-    const response = await api.get("/v1/client/blogs");
+  const response = await client.get("/v1/client/blogs");
+  if (!response.ok) {
+    let e: BaseResp = {
+      data: null,
+      code: response.status || 500,
+      message: `${response.problem} ${response.originalError}`,
+    };
+    return e;
+  } else {
     return response.data as BaseResp;
-  } catch (error) {
-    throw error;
   }
 });
 
 const clientGetBlogBySlug = async (slug: string) => {
   try {
-    const response = await api.get(`/v1/client/blog/${slug}`);
+    const response = await client.get(`/v1/client/blog/${slug}`);
     console.log("clientGetBlogBySlug: ", response);
     return response.data as BaseResp;
   } catch (error) {

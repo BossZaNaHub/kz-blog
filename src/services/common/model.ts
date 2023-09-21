@@ -1,5 +1,5 @@
 export interface Response {
-    data: any
-    code: number
-    message: string
+  data: any | null;
+  code: number;
+  message: string;
 }

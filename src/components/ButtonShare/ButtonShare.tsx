@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Blog } from "@/services/blog";
+import { DecimalWithSymbol } from "@/utils/decimal";
+import { FC, useEffect, useRef, useState } from "react";
 import {
   LuEye,
   LuMoreHorizontal,
@@ -8,7 +10,11 @@ import {
   LuLinkedin,
 } from "react-icons/lu";
 
-const ButtonShare = () => {
+type ButtonShareOptions = {
+  blog: Blog;
+};
+
+const ButtonShare: FC<ButtonShareOptions> = (props) => {
   const [toggleDropdown, setToggleDropdown] = useState<boolean>(false);
   const buttonDropdownRef = useRef<HTMLButtonElement>(null);
 
@@ -48,7 +54,7 @@ const ButtonShare = () => {
       <div className="relative flex flex-row items-center justify-between py-2">
         <span className="flex items-center gap-1.5">
           <LuEye />
-          <span>1.0k</span>
+          <span>{DecimalWithSymbol(props.blog.views)}</span>
         </span>
         <span className="flex items-center">
           <button
