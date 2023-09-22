@@ -109,7 +109,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
             <ul className="mb-6 flex flex-col gap-1.5">
               {MainMenuList.map((v) => {
-                console.log("v: ", v);
+                // console.log("v: ", v);
                 return (
                   <div key={v.name}>
                     <div>{v.name}</div>

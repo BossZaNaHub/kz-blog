@@ -1,4 +1,4 @@
-import { FC, TableHTMLAttributes } from "react";
+import { FC, ReactNode, TableHTMLAttributes } from "react";
 
 export interface TableHeader {
   key: string;
@@ -9,65 +9,50 @@ export interface TableBody {
   value: any;
 }
 
-type TableHeaderProps = {
-  headers: TableHeader[];
-};
+interface TableHeaderProps {
+  children: ReactNode;
+  // headers?: TableHeader[];
+}
 
-type TableBodyProps = TableHTMLAttributes<HTMLTableElement> & {
-  data?: TableBody[];
-};
+interface TableBodyProps {
+  // data?: TableBody[];
+  children: ReactNode;
+}
 
 type TableProps = TableHTMLAttributes<HTMLTableElement> & {
-  striped: boolean;
-  headers: TableHeader[];
+  striped?: boolean;
+  headers?: TableHeader[];
   body?: TableBody[];
 };
 
 const Thead: FC<TableHeaderProps> = (props) => {
-  const headers = props.headers;
+  // const headers = props.headers;
   return (
-    <thead className="border-b dark:border-slate-400">
-      <tr>
+    <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
+      {props.children}
+      {/* <tr>
         {headers.map((v) => (
           <th className="p-4" key={v.key}>
             {v.name}
           </th>
         ))}
-      </tr>
+      </tr> */}
     </thead>
   );
 };
 
 const TBody: FC<TableBodyProps> = (props) => {
-  if (props.data) {
-    return (
-      <tbody>
-        <tr>
-          {props.data.map((v: TableBody, i: number) => (
-            <td className="p-2" key={i}>
-              {v.value}
-            </td>
-          ))}
-        </tr>
-      </tbody>
-    );
-  } else {
-    return <tbody>{props.children}</tbody>;
-  }
+  return <tbody>{props.children}</tbody>;
 };
 
 const Table: FC<TableProps> = (props) => {
   return (
-    <>
-      <table
-        className="mx-auto w-full table-fixed rounded-lg border bg-transparent bg-white shadow-lg dark:bg-slate-600"
-        {...props}
-      >
-        <Thead headers={props.headers} />
-        {props.body ? <TBody data={props.body} /> : <TBody>{props.children}</TBody>}
+    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <table className="mx-auto w-full table-fixed  bg-white shadow-lg dark:bg-slate-600" {...props}>
+        {props.children}
       </table>
-    </>
+    </div>
   );
 };
 
-export default Table;
+export { Table, TBody, Thead };
