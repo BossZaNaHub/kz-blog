@@ -1,17 +1,19 @@
 "use client";
 
 import Card from "@/components/Card";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootStore } from "@/services";
 import { Blog, clientListBlog } from "@/services/blog";
 import { useToast } from "@/components/Toast";
 import Retry from "@/components/Retry";
 import Loading from "@/components/Loading";
+import { AnyAction } from "@reduxjs/toolkit";
+import { useAppDispatch, useAppSelector } from "@/services/hook";
 
 const Page = () => {
-  const data = useSelector((state: RootStore) => state.blog);
-  const dispatch = useDispatch();
+  const data = useAppSelector((state: RootStore) => state.blog);
+  const dispatch = useAppDispatch();
   const { showToast } = useToast();
   const [error, setError] = useState(false);
 
@@ -42,9 +44,9 @@ const Page = () => {
           <div className="flex flex-wrap justify-center gap-2.5 px-5">
             {data.data?.map((v: Blog, i: number) => {
               return (
-                <Suspense fallback={<Loading variant="square" height="md" />} key={i}>
+                <Loading loading={false} key={i}>
                   <Card className="basis-full md:basis-1/4" blog={v} />
-                </Suspense>
+                </Loading>
               );
             })}
           </div>

@@ -1,7 +1,11 @@
-import Image from 'next/image'
+// import { Loader } from "phaser-ce"
+"use client";
+import Game from "@/components/Game";
 
 export default function Home() {
   return (
-    <h1>Shiba Farm</h1>
-  )
+    <>
+      <Game className="absolute top-0" />
+    </>
+  );
 }

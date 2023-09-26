@@ -1,6 +1,7 @@
 "use client";
 
 import { useToast } from "@/components/Toast";
+import { useAppDispatch } from "@/services/hook";
 import { Register, adminRegister } from "@/services/register";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -14,7 +15,7 @@ type RegisterInputs = {
 };
 
 const Page = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [formData, setFormData] = useState<Register>({
     mobile_number: 0,
     password: "",

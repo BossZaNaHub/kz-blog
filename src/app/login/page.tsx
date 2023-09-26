@@ -4,11 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { Login, clientLogin, clientUserReset } from "@/services/user";
 import { RootStore } from "@/services";
 import { useToast } from "@/components/Toast";
-// import Select, { SelectOptionValue } from "@/components/Select";
 import { SubmitHandler, useForm } from "react-hook-form";
-import Input from "@/components/Input";
-import { LuDog, LuLock, LuLogIn, LuPhone } from "react-icons/lu";
+import { LuDog, LuLogIn } from "react-icons/lu";
 import { useRouter } from "next/navigation";
+import { useAppDispatch, useAppSelector } from "@/services/hook";
 
 type LoginInputs = {
   mobile_number: string;
@@ -17,12 +16,12 @@ type LoginInputs = {
 
 const Page = () => {
   const router = useRouter();
-  const dispatch = useDispatch();
-  const user = useSelector((state: RootStore) => state.user);
-  const [formData, setFormData] = useState<Login>({
-    mobile_number: 0,
-    password: "",
-  });
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state: RootStore) => state.user);
+  // const [formData, setFormData] = useState<Login>({
+  //   mobile_number: 0,
+  //   password: "",
+  // });
   const { showToast } = useToast();
   const {
     handleSubmit,
@@ -80,10 +79,10 @@ const Page = () => {
   //     setFormData((prevData) => ({ ...prevData, [name]: value }));
   // }
 
-  const getSelectValue = (values: SelectOptionValue[]) => {
-    console.log("values: ", values);
-    return values;
-  };
+  // const getSelectValue = (values: SelectOptionValue[]) => {
+  //   console.log("values: ", values);
+  //   return values;
+  // };
 
   return (
     <div className="flex min-h-screen items-center justify-center">

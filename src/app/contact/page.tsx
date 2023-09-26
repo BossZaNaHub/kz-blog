@@ -3,19 +3,18 @@
 import ProgressBar from "@/components/ProgressBar";
 import { useEffect, useState } from "react";
 import { silkscreen } from "../font";
-import { DiRuby, DiNodejs } from "react-icons/di";
 import { LuFacebook, LuLinkedin, LuDog } from "react-icons/lu";
 import Loading from "@/components/Loading";
 
 const Page = () => {
   const [fakeLoading, setFakeLoading] = useState<boolean>(true);
-  const [skills, setSkills] = useState<{ skill: string; percent: number }[]>([
+  const [skills] = useState<{ skill: string; percent: number }[]>([
     { skill: "Golang", percent: 90 },
     { skill: "RUBY on RAILS", percent: 50 },
     { skill: "React / Native", percent: 60 },
     { skill: "Javascript / Typescript", percent: 75 },
   ]);
-  const [otherSkills, setOtherSkills] = useState<string[]>([
+  const [otherSkills] = useState<string[]>([
     "DBMS [SQL]",
     "NoSQL",
     "GraphQL",

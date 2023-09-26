@@ -1,25 +1,24 @@
 import { ChangeEvent, ForwardedRef, InputHTMLAttributes, forwardRef, useState } from "react";
 
-interface SwitchProps {
-  label?: string;
-}
+interface SwitchProps {}
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & SwitchProps;
 
-const Switch = forwardRef(({ label, ...rest }: InputProps, ref: ForwardedRef<HTMLInputElement>) => {
+const Switch = forwardRef(({ ...rest }: InputProps, ref: ForwardedRef<HTMLInputElement>) => {
   const [inputValue, setInputValue] = useState(rest.checked);
   const handleChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    console.log(evt.target.checked);
     setInputValue(evt.target.checked);
   };
   return (
     <div className="flex space-x-2">
-      <label className="">{label}</label>
+      <label>{rest.placeholder}</label>
       <label className="relative inline-flex cursor-pointer items-center">
         <input
+          {...rest}
           type="checkbox"
           checked={inputValue}
           className="peer sr-only"
-          {...rest}
           ref={ref}
           onChange={(e) => handleChange(e)}
         />

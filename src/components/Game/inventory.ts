@@ -1,0 +1,1 @@
+let Inventory: Phaser = [];

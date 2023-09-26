@@ -1180,6 +1180,11 @@ eventemitter3@^2.0.3:
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-2.0.3.tgz#b5e1079b59fb5e1ba2771c0a993be060a58c99ba"
   integrity sha512-jLN68Dx5kyFHaePoXWPsCGW5qdyZQtLYHkxkg02/Mz6g0kYpDx4FyP6XfArhQdlOC4b8Mv+EMxPo/8La7Tzghg==
 
+eventemitter3@^5.0.0:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-5.0.1.tgz#53f5ffd0a492ac800721bb42c66b841de96423c4"
+  integrity sha512-GWkBvjiSZK87ELrYOSESUYeVIc9mvLLf/nXalMOS5dYrgZq9o5OVkbZAVM06CVxYsCwH9BDZFPlQTlPA1j4ahA==
+
 extend@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.2.tgz#f8b1136b4071fbd8eb140aff858b1019ec2915fa"
@@ -2098,10 +2103,17 @@ path-type@^4.0.0:
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
-phaser-ce@^2.20.0:
-  version "2.20.0"
-  resolved "https://registry.yarnpkg.com/phaser-ce/-/phaser-ce-2.20.0.tgz#f7fc3c98444bd54c949f063fa9bcabc352399c00"
-  integrity sha512-IhWEyIJOdpp6fdwaxdnOLpqIwdrXEFXbsW3D2roSDJIfSVwFIzEllssxTVRJfiVjXUXTkAhF1EHByVo32WTWpw==
+phaser3spectorjs@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/phaser3spectorjs/-/phaser3spectorjs-0.0.8.tgz#a7996eebc9c498b6d9d19ecda35f16ad3918a8a8"
+  integrity sha512-0dSO7/aMjEUPrp5EcjRvRRsEf+jXDbmzalPeJ6VtTB2Pn1PeaKc+qlL/DmO3l1Dvc5lkzc+Sil1Ta+Hkyi5cbA==
+
+phaser@3.60.0:
+  version "3.60.0"
+  resolved "https://registry.yarnpkg.com/phaser/-/phaser-3.60.0.tgz#8a555623e64c707482e6321485b4bda84604590d"
+  integrity sha512-IKUy35EnoEVcl2EmJ8WOyK4X8OoxHYdlhZLgRGpNrvD1fEagYffhVmwHcapE/tGiLgyrnezmXIo5RrH2NcrTHw==
+  dependencies:
+    eventemitter3 "^5.0.0"
 
 picocolors@^1.0.0:
   version "1.0.0"

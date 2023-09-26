@@ -1,6 +1,6 @@
 import { FC, SVGAttributes } from "react";
 
-type CustomSlashSVGProps = SVGAttributes<SVGElement> & {};
+type CustomSlashSVGProps = SVGAttributes<SVGElement>;
 
 export const CustomSlash: FC<CustomSlashSVGProps> = (props) => {
   return (

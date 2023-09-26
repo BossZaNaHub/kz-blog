@@ -1,9 +1,7 @@
-"use client"
-import { Editor } from '@tinymce/tinymce-react';
-import { useRef } from 'react';
+"use client";
 
 const Dashboard = () => {
-    return <></>
-}
+  return <></>;
+};
 
-export default Dashboard
+export default Dashboard;

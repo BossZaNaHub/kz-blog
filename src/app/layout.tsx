@@ -5,7 +5,6 @@ import { ReduxProvider } from "@/services/Provider";
 import { ToastProvider } from "@/components/Toast";
 import Circle from "@/components/Circle";
 import Header from "@/components/RootHeader";
-import Loading from "@/components/Loading";
 import ThemeProvider from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {

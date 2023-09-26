@@ -1,4 +1,4 @@
-import api from "@/services/api";
+import api from "@/services/api/api";
 import { Suspense, cache } from "react";
 import { Blog } from "@/services/blog";
 import { Response as BaseResp } from "@/services/common";
@@ -27,25 +27,24 @@ const getBlogBySlug = cache(async (slug: string) => {
   return response.data as BaseResp;
 });
 
-export async function generateMetadata(
-  { blog }: MetaProps
-  //   parent: ResolvingMetadata
-): Promise<Metadata> {
-  if (blog) {
-    let meta: Metadata = {
-      title: blog.seo.meta_title,
-      description: blog.seo.meta_description,
-    };
-    return meta;
-  }
-  return {};
-}
+// export async function generateMetadata(
+//   { blog }: MetaProps
+// ): Promise<Metadata> {
+//   if (blog) {
+//     let meta: Metadata = {
+//       title: blog.seo.meta_title,
+//       description: blog.seo.meta_description,
+//     };
+//     return meta;
+//   }
+//   return {};
+// }
 
 const Page = async ({ params }: Props) => {
   const result = await getBlogBySlug(params.slug);
   const blog = result.data.blog as Blog;
 
-  generateMetadata({ blog });
+  // generateMetadata({ blog });
 
   return (
     <div className="mx-auto flex w-full max-w-screen-md justify-center p-5 text-black dark:text-white">

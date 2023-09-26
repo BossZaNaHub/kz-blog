@@ -6,11 +6,13 @@ import { useToast } from "@/components/Toast";
 import { RootStore } from "@/services";
 import { adminListBlog } from "@/services/admin/blog";
 import { Blog } from "@/services/blog";
-import { ReactElement, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { LuEye, LuEyeOff } from "react-icons/lu";
 import { useDispatch, useSelector } from "react-redux";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { useAppDispatch, useAppSelector } from "@/services/hook";
+import Button from "@/components/Button";
 
 const headers: TableHeader[] = [
   { key: "id", name: "#" },
@@ -22,8 +24,8 @@ const headers: TableHeader[] = [
 ];
 
 const Page = () => {
-  const dispatch = useDispatch();
-  const { data, error } = useSelector((state: RootStore) => state.admin_blog);
+  const dispatch = useAppDispatch();
+  const { data, error } = useAppSelector((state: RootStore) => state.admin_blog);
   const [isError, setIsError] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [contentBody, setContentBody] = useState<Blog | null>(null);
@@ -58,13 +60,10 @@ const Page = () => {
   };
 
   const changeQuillContent = (e: string) => {
-    let updateCotentBody: Blog = { ...contentBody };
-
-    updateCotentBody.content = e;
-
-    setContentBody(updateCotentBody);
-
-    console.log(updateCotentBody.content);
+    // let updateCotentBody: Blog = { ...contentBody };
+    // updateCotentBody.content = e;
+    // setContentBody(updateCotentBody);
+    // console.log(updateCotentBody.content);
   };
 
   const _renderBlog = () => {
@@ -206,18 +205,12 @@ const Page = () => {
                   <td className="p-1.5 text-center">{v.category?.name}</td>
                   <td className="p-1.5 text-center">{v.tags.join(",")}</td>
                   <td className="flex justify-center space-x-1 p-1.5">
-                    <button
-                      className="mb-2 mr-2 rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-                      onClick={() => openModalWithMode(v, "view_mode")}
-                    >
+                    <Button className="mb-2 mr-2" onClick={() => openModalWithMode(v, "view_mode")}>
                       View
-                    </button>
-                    <button
-                      className="mb-2 mr-2 rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-                      onClick={() => openModalWithMode(v, "edit_mode")}
-                    >
+                    </Button>
+                    <Button className="mb-2 mr-2" onClick={() => openModalWithMode(v, "edit_mode")}>
                       Edit
-                    </button>
+                    </Button>
                   </td>
                 </tr>
               );
