@@ -3,10 +3,10 @@ import Input from "@/components/Input";
 import Switch from "@/components/Switch";
 import { RootStore } from "@/services";
 import { Profile } from "@/services/admin/profile";
+import { useAppSelector } from "@/services/hook";
 // import { Profile } from "@/services/admin/profile";
 import { ChangeEvent, useEffect, useState } from "react";
 import { Resolver, SubmitHandler, useForm, Controller } from "react-hook-form";
-import { useSelector } from "react-redux";
 
 type ProfileInput = {
   mobile_number?: number;
@@ -27,7 +27,7 @@ const resolver: Resolver<ProfileInput> = async (values) => {
 };
 
 const Page = () => {
-  const { data } = useSelector((state: RootStore) => state.profile);
+  const { data } = useAppSelector((state: RootStore) => state.profile);
   const [formData, setFormData] = useState<Profile>({ id: 0, mobile_number: 0, name: "", two_factor_enabled: false });
 
   useEffect(() => {

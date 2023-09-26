@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { Login, clientLogin, clientUserReset } from "@/services/user";
 import { RootStore } from "@/services";
 import { useToast } from "@/components/Toast";

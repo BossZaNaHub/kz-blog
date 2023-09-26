@@ -2,7 +2,6 @@
 
 import Card from "@/components/Card";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { RootStore } from "@/services";
 import { Blog, clientListBlog } from "@/services/blog";
 import { useToast } from "@/components/Toast";

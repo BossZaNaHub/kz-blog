@@ -2,16 +2,16 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useAuth } from "@/services/Auth";
 import { LuLogOut, LuUser } from "react-icons/lu";
-import { useDispatch, useSelector } from "react-redux";
 import { RootStore } from "@/services";
 import { userProfile } from "@/services/admin/profile";
 import { LuRefreshCcw } from "react-icons/lu";
+import { useAppDispatch, useAppSelector } from "@/services/hook";
 
 const DropdownUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { user, logout } = useAuth();
-  const dispatch = useDispatch();
-  const { isLoading, data, error } = useSelector((state: RootStore) => state.profile);
+  const dispatch = useAppDispatch();
+  const { isLoading, data, error } = useAppSelector((state: RootStore) => state.profile);
 
   useEffect(() => {
     if (user) {

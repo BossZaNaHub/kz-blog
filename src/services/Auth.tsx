@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Login, UserAuthentication, clientAuth, clientLogin, clientLogout } from "./user";
 import { RootStore } from ".";
 import { useRouter } from "next/navigation";
+import { useAppDispatch, useAppSelector } from "./hook";
 
 interface AuthProviderConfig {
   children: ReactNode;
@@ -28,10 +29,10 @@ const AuthContext = createContext<AuthProviderContext | null>({
 
 export const AuthProvider = ({ children }: AuthProviderConfig) => {
   const router = useRouter();
-  const dispatch = useDispatch();
-  const user = useSelector((state: RootStore) => state.user.data);
-  const isAuthenticated = useSelector((state: RootStore) => state.user.isAuthenticated);
-  const loading = useSelector((state: RootStore) => state.user.isLoading);
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state: RootStore) => state.user.data);
+  const isAuthenticated = useAppSelector((state: RootStore) => state.user.isAuthenticated);
+  const loading = useAppSelector((state: RootStore) => state.user.isLoading);
 
   useEffect(() => {
     const auth = localStorage.getItem("authenticated");
@@ -43,7 +44,7 @@ export const AuthProvider = ({ children }: AuthProviderConfig) => {
 
   const login = (data: Login) => {
     console.log("...login", data);
-    dispatch(clientLogin(login));
+    dispatch(clientLogin(data));
   };
 
   const logout = () => {
