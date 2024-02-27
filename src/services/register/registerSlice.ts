@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { adminRegister } from ".";
+import { UserAuthentication } from "../user";
 
 interface RegisterState {
   data: any | null;
@@ -18,6 +19,7 @@ const initialState: RegisterState = {
 const registerSlice = createSlice({
   name: "register",
   initialState: initialState,
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(adminRegister.pending, (state) => {
@@ -34,7 +36,7 @@ const registerSlice = createSlice({
         if (payload.code == 0) {
           let userData = payload.data as UserAuthentication;
           state.data = userData;
-          state.isAuthenticated = true;
+          // state.isAuthenticated = true;
         } else {
           state.error = payload.message;
         }

@@ -1,4 +1,5 @@
 "use client";
+import Button from "@/components/Button";
 import Input from "@/components/Input";
 import Switch from "@/components/Switch";
 import { RootStore } from "@/services";
@@ -58,50 +59,24 @@ const Page = () => {
   return (
     <div className="p-2">
       <h1 className="text-center">Profile</h1>
-      <div className="flex justify-center">
+      <div className="mx-auto flex w-full max-w-md justify-center">
         <form className="flex flex-col space-y-2" onSubmit={handleSubmit(onSubmit)}>
-          <div className="text-dark flex space-x-2 dark:text-white">
-            {/* <label>Fullname</label> */}
-            {/* <Controller
-              name="name"
-              control={control}
-              render={({ field }) => <input className="rounded-md bg-transparent" placeholder="name" {...field} />}
-            /> */}
-            {/* <Controller
-              name="name"
-              control={control}
-              render={({ field }) => <Input className="rounded-md bg-transparent" placeholder="Fullname" {...field} />}
-            />
-            {errors.name && <p className="text-red-500">{errors.name.message}</p>} */}
-          </div>
-          <div className="text-dark flex space-x-2 dark:text-white">
-            {/* <label>Mobile Number</label>
-            <Controller
-              name="mobile_number"
-              control={control}
-              render={({ field }) => (
-                <input className="rounded-md bg-transparent" placeholder="mobile_number" {...field} />
-              )}
-            /> */}
-            {/* <Controller
-              name="mobile_number"
-              control={control}
-              render={({ field }) => (
-                <Input className="rounded-md bg-transparent" placeholder="Mobile Number" {...field} />
-              )}
-            /> */}
-            {errors.mobile_number && <p className="text-red-500">{errors.mobile_number.message}</p>}
-          </div>
+          <Input placeholder="Fullname" label="Fullname" {...register("name")} required />
+          <Input placeholder="Mobile Number" label="Mobile number" {...register("mobile_number")} required />
+          {/* {errors.mobile_number && <p className="text-red-500">{errors.mobile_number.message}</p>} */}
           <div className="text-dark dark:text-white">
-            <Controller
+            <Switch placeholder="Enabled Two Factor" {...register("two_factor_enabled")} />
+            {/* <Controller
               name="two_factor_enabled"
               control={control}
               render={({ field }) => (
-                <Switch placeholder="Enabled Two Factor" {...register("two_factor_enabled")} {...field} />
+                
               )}
-            />
+            /> */}
           </div>
-          <button type="submit">Update</button>
+          <Button type="submit" color="info">
+            Update
+          </Button>
         </form>
       </div>
     </div>

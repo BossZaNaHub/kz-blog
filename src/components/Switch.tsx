@@ -6,10 +6,12 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & SwitchProps;
 
 const Switch = forwardRef(({ ...rest }: InputProps, ref: ForwardedRef<HTMLInputElement>) => {
   const [inputValue, setInputValue] = useState(rest.checked);
+
   const handleChange = (evt: ChangeEvent<HTMLInputElement>) => {
     console.log(evt.target.checked);
     setInputValue(evt.target.checked);
   };
+
   return (
     <div className="flex space-x-2">
       <label>{rest.placeholder}</label>

@@ -8,9 +8,8 @@ import { adminListBlog } from "@/services/admin/blog";
 import { Blog } from "@/services/blog";
 import { useEffect, useState } from "react";
 import { LuEye, LuEyeOff } from "react-icons/lu";
-import { useDispatch, useSelector } from "react-redux";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+// import ReactQuill from "react-quill";
+// import "react-quill/dist/quill.snow.css";
 import { useAppDispatch, useAppSelector } from "@/services/hook";
 import Button from "@/components/Button";
 
@@ -51,7 +50,6 @@ const Page = () => {
   };
 
   const openModalWithMode = (data: Blog, mode: "view_mode" | "edit_mode" | null) => {
-    console.log("edit: ", data);
     setMode(mode);
     setContentBody(data);
     setTimeout(() => {
@@ -138,7 +136,7 @@ const Page = () => {
               </button>
             </div>
             {preview ? <div dangerouslySetInnerHTML={{ __html: contentBody.content }} /> : <></>} */}
-            <ReactQuill theme={"snow"} value={contentBody.content} onChange={(e: string) => changeQuillContent(e)} />
+            {/* <ReactQuill theme={"snow"} value={contentBody.content} onChange={(e: string) => changeQuillContent(e)} /> */}
           </div>
           <div className="flex space-x-2.5 border-b border-gray-700 pb-2 dark:border-gray-50">
             <div>tags: </div>

@@ -1,4 +1,5 @@
 import { ApisauceInstance, create } from "apisauce";
+import { redirect } from "next/navigation";
 
 const timeout: number = parseInt(process.env.TIMEOUT || "30000", 30000);
 const apiURL = process.env.NEXT_PUBLIC_API_URL || "";
@@ -10,6 +11,12 @@ const client: ApisauceInstance = create({
     "Cache-Control": "no-cache",
   },
   timeout: timeout,
+});
+
+client.addResponseTransform((transform) => {
+  if (!transform.ok && transform.status === 403) {
+    redirect("/login");
+  }
 });
 
 // api.addMonitor()

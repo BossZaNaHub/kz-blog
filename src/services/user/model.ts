@@ -18,6 +18,7 @@ export interface UserAuthentication {
 }
 
 export interface Login {
-  mobile_number: number;
+  mobile_number: string;
+  country_code: string;
   password: string;
 }

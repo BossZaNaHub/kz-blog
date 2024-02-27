@@ -1,7 +1,7 @@
 "use client";
 
 const Dashboard = () => {
-  return <></>;
+  return <>Dashboard Page</>;
 };
 
 export default Dashboard;

@@ -17,7 +17,7 @@ interface Toast {
 }
 
 interface ToastOption {
-  duration?: number;
+  duration: number;
   status?: ToastStatus;
   widthPercentage?: number;
   id?: string;
@@ -30,28 +30,27 @@ const ToastContext = createContext({
 
 export const ToastProvider = ({ children }: ToastProviderConfig) => {
   const [toasts, setToasts] = useState<Toast[]>([]);
-  // console.log(toasts);
   useEffect(() => {
-    // const interval = 10;
-    let startTime = Date.now();
-    setToasts((prevToasts: Toast[]) => {
-      prevToasts?.map((toast) => {
-        const currentTime = Date.now();
-        const elapsedTime = currentTime - startTime;
-        const duration = toast.options.duration || 0;
-        const endTime = startTime + duration;
-        const percentage = toast.options.widthPercentage || 100;
-
-        if (currentTime < endTime) {
-          toast.options.widthPercentage = (elapsedTime / duration) * percentage;
-        }
+    const interval = setInterval(() => {
+      let startTime = Date.now();
+      setToasts((prevToasts: Toast[]) => {
+        prevToasts?.map((toast) => {
+          // console.log(toast.options.widthPercentage);
+          // toast.options.widthPercentage = (100 / toast.options.duration) * 100;
+          // if (toast.options.duration > 0) {
+          //   toast.options.duration -= 1000;
+          // }
+          // const currentTime = Date.now();
+          // const elapsedTime = currentTime - startTime;
+          // const endTime = startTime + duration;
+          // if (currentTime < endTime) {
+          // console.log("duration time...", duration);
+          // }
+        });
+        return prevToasts;
       });
-
-      return prevToasts;
     });
-    // return () => {
-    //   clearInterval(interval);
-    // };
+    return () => clearInterval(interval);
   }, [toasts]);
 
   const showToast = (content: string, options?: ToastOption) => {

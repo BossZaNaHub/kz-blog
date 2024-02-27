@@ -64,7 +64,7 @@ const Game: FC<GameProps> = (props) => {
     const config: Phaser.Types.Core.GameConfig = {
       width: window.innerWidth,
       height: window.innerHeight,
-      type: Phaser.AUTO,
+      type: Phaser.WEBGL,
       parent: "game-container",
       antialias: true,
       scene: {
@@ -72,11 +72,12 @@ const Game: FC<GameProps> = (props) => {
         create,
         update,
       },
+      version: "1",
       physics: {
         default: "arcade",
         arcade: {
           gravity: { y: 600 }, // Set the gravity in the y-direction (adjust as needed)
-          debug: true, // Set to true to see physics debug information
+          debug: false, // Set to true to see physics debug information
         },
       },
     };
@@ -388,14 +389,14 @@ const Game: FC<GameProps> = (props) => {
     };
 
     const handleJoystickStart = (pointer: Phaser.Input.Pointer) => {
-      console.log("handleJoystickStart: ", pointer.x, pointer.y, joystickBase.x, joystickBase.y, joystickActive);
+      // console.log("handleJoystickStart: ", pointer.x, pointer.y, joystickBase.x, joystickBase.y, joystickActive);
       if (Phaser.Math.Distance.Between(pointer.x, pointer.y, joystickBase.x, joystickBase.y) <= 60) {
         joystickActive = true;
       }
     };
 
     const handleJoystickControl = (pointer: Phaser.Input.Pointer) => {
-      console.log("handleJoystickControl: ", pointer.x, pointer.y, joystickActive);
+      // console.log("handleJoystickControl: ", pointer.x, pointer.y, joystickActive);
       if (joystickActive) {
         const angle = Phaser.Math.Angle.Between(joystickBase.x, joystickBase.y, pointer.x, pointer.y);
         const distance = Phaser.Math.Distance.Between(joystickBase.x, joystickBase.y, pointer.x, pointer.y);

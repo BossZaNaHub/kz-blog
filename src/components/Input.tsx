@@ -1,6 +1,5 @@
 "use client";
-import { FC, forwardRef, ForwardedRef, InputHTMLAttributes, useState } from "react";
-import { FieldValues, UseFormReturn, useController, useFormContext } from "react-hook-form";
+import React, { FC, forwardRef, ForwardedRef, InputHTMLAttributes, useState } from "react";
 import { IconBaseProps } from "react-icons";
 
 interface CustomInputProps {
@@ -10,8 +9,7 @@ interface CustomInputProps {
 
 type InputWrapperProps = InputHTMLAttributes<HTMLInputElement> & CustomInputProps;
 
-const Input: FC<InputWrapperProps> = ({ ...rest }) => {
-  const { control } = useFormContext<UseFormReturn<FieldValues>>();
+const Input = forwardRef(({ ...rest }: InputWrapperProps, ref: ForwardedRef<HTMLInputElement>) => {
   const cls = `w-full rounded-lg p-0.5 indent-1 text-black  focus:placeholder:invisible focus-visible:outline-0 md:max-w-md ${rest.className}`;
   // const [inputValue, setInputValue] = useState<string | number | readonly string[] | undefined>(rest.value);
 
@@ -22,13 +20,12 @@ const Input: FC<InputWrapperProps> = ({ ...rest }) => {
   return (
     <div className="flex space-x-2">
       {rest.icon && <span className="mr-1">{rest.icon}</span>}
-      {rest.placeholder && !rest.icon && <label htmlFor={rest.name}>{rest.placeholder}</label>}
-      {/* <Controller name={rest.name} control={control} render={<input {...field} {...rest} className={`${cls}`} />} /> */}
-      {fieldState.error && <span className="text-red-700">{fieldState.error.message}</span>}
+      {rest.label && !rest.icon && <label htmlFor={rest.name}>{rest.label}</label>}
+      <input name={rest.name} placeholder={rest.placeholder} className={`${cls}`} {...rest} ref={ref} />
     </div>
   );
-};
+});
 
-// Input.displayName = "Input";
+Input.displayName = "Input";
 
 export default Input;
