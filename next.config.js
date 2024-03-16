@@ -4,18 +4,9 @@ const path = require("path");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // output: "export",
   images: {
     domains: ["picsum.photos", "github.com", "localhost"],
-    // remotePatterns: [
-    //   {
-    //     protocol: "https",
-    //     hostname: "",
-    //   },
-    //   {
-    //     protocol: 'https',
-    //     hostname: ""
-    //   }
-    // ],
   },
 };
 

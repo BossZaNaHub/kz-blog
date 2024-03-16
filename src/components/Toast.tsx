@@ -17,7 +17,7 @@ interface Toast {
 }
 
 interface ToastOption {
-  duration: number;
+  duration?: number;
   status?: ToastStatus;
   widthPercentage?: number;
   id?: string;

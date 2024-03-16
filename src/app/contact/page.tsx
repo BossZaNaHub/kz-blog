@@ -74,11 +74,11 @@ const Page = () => {
   const _renderProfile = () => {
     return (
       <div className="py-5">
-        <h2 className="text-primary py-1 text-3xl">SUCHATCHAI METHWARANONT [BOSS]</h2>
-        <h2 className="text-primary py-1 text-3xl">メッタワラノン スチャッチャイ [ボース]</h2>
-        <span className={`text-primary py-1 text-2xl ${silkscreen.className}`}>
+        {/* <h2 className="text-primary py-1 text-3xl">SUCHATCHAI METHWARANONT [BOSS]</h2> */}
+        {/* <h2 className="text-primary py-1 text-3xl">メッタワラノン スチャッチャイ [ボース]</h2> */}
+        <h2 className={`text-primary py-1 text-2xl ${silkscreen.className}`}>
           KuroshibaZ <LuDog className="inline-flex" /> （黒柴）
-        </span>
+        </h2>
       </div>
     );
   };
