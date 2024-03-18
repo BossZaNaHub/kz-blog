@@ -4,9 +4,9 @@ const path = require("path");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // output: "export",
+  output: "export",
   images: {
-    domains: ["picsum.photos", "github.com", "localhost"],
+    unoptimized: true,
   },
 };
 

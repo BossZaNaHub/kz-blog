@@ -5,17 +5,17 @@ import { useEffect, useState } from "react";
 import { silkscreen } from "../font";
 import { LuFacebook, LuLinkedin, LuDog } from "react-icons/lu";
 import Loading from "@/components/Loading";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 const Page = () => {
   const [fakeLoading, setFakeLoading] = useState<boolean>(true);
   const [skills] = useState<{ skill: string; percent: number; image: string }[]>([
-    { skill: "Golang", percent: 90, image: "/contact/golang_200x200.jpeg" },
-    { skill: "RUBY on RAILS", percent: 50, image: "/contact/typescript_200x200.jpeg" },
-    { skill: "React / Native", percent: 60, image: "/contact/ror_200x200.jpeg" },
-    { skill: "Javascript / Typescript", percent: 75, image: "/contact/react_200x200.jpeg" },
-    { skill: "Kafka", percent: 75, image: "/contact/kafka_200x200.jpeg" },
-    { skill: "RabbitMQ", percent: 75, image: "/contact/rabbitmq_200x200.jpeg" },
+    { skill: "Golang", percent: 90, image: "contact/golang_200x200.jpeg" },
+    { skill: "RUBY on RAILS", percent: 50, image: "contact/typescript_200x200.jpeg" },
+    { skill: "React / Native", percent: 60, image: "contact/ror_200x200.jpeg" },
+    { skill: "Javascript / Typescript", percent: 75, image: "contact/react_200x200.jpeg" },
+    { skill: "Kafka", percent: 75, image: "contact/kafka_200x200.jpeg" },
+    { skill: "RabbitMQ", percent: 75, image: "contact/rabbitmq_200x200.jpeg" },
   ]);
   const [otherSkills] = useState<string[]>([
     "DBMS [SQL]",
@@ -39,7 +39,17 @@ const Page = () => {
         <h2 className="text-2xl">PROGRAMMING SKILL - 番組編成</h2>
         <div className="flex">
           {skills.map((v, i) => {
-            return <Image className="flex w-16 flex-1" src={v.image} width={200} height={200} alt={v.skill} key={i} />;
+            return (
+              <Image
+                className="flex w-16 flex-1"
+                src={v.image}
+                width={200}
+                height={200}
+                alt={v.skill}
+                key={i}
+                unoptimized
+              />
+            );
           })}
         </div>
       </div>
