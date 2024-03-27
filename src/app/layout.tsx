@@ -4,7 +4,7 @@ import { inter, silkscreen } from "./font";
 import { ReduxProvider } from "@/services/Provider";
 import { ToastProvider } from "@/components/Toast";
 import Circle from "@/components/Circle";
-import Header from "@/components/RootHeader";
+import Header from "@/components/NewHeader";
 import ThemeProvider from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {

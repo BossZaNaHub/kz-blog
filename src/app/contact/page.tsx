@@ -35,20 +35,14 @@ const Page = () => {
 
   const _renderSkill = () => {
     return (
-      <div>
+      <div className="py-5">
         <h2 className="text-2xl">PROGRAMMING SKILL - 番組編成</h2>
-        <div className="flex">
+        <div className="flex py-5">
           {skills.map((v, i) => {
             return (
-              <Image
-                className="flex w-16 flex-1"
-                src={v.image}
-                width={200}
-                height={200}
-                alt={v.skill}
-                key={i}
-                unoptimized
-              />
+              <div className="flex" key={i}>
+                <Image className="flex w-16 flex-1" src={v.image} width={50} height={50} alt={v.skill} unoptimized />
+              </div>
             );
           })}
         </div>
@@ -75,7 +69,7 @@ const Page = () => {
 
   const _renderPosition = () => {
     return (
-      <div>
+      <div className="">
         <h2 className="text-3xl">FULLSTACK DEVELOPER</h2>
       </div>
     );
@@ -84,8 +78,8 @@ const Page = () => {
   const _renderProfile = () => {
     return (
       <div className="py-5">
-        {/* <h2 className="text-primary py-1 text-3xl">SUCHATCHAI METHWARANONT [BOSS]</h2> */}
-        {/* <h2 className="text-primary py-1 text-3xl">メッタワラノン スチャッチャイ [ボース]</h2> */}
+        {/* <h2 className="text-primary py-1 text-3xl">SUCHATCHAI METHWARANONT [BOSS]</h2>
+        <h2 className="text-primary py-1 text-3xl">メッタワラノン スチャッチャイ [ボース]</h2> */}
         <h2 className={`text-primary py-1 text-2xl ${silkscreen.className}`}>
           KuroshibaZ <LuDog className="inline-flex" /> （黒柴）
         </h2>
@@ -95,19 +89,20 @@ const Page = () => {
 
   const _renderEducation = () => {
     return (
-      <div>
+      <div className="py-5">
         <h2 className="text-2xl">Education - 養成</h2>
         <p className="py1 text-xl">
           Thai-Nichi Institute of Technology 泰日工業大学 - Bachelor Degree of Computer Engineering
         </p>
         <p className="py1 text-xl">Lasalle School Bangkok - Math and Science</p>
+        {_renderResource()}
       </div>
     );
   };
 
   const _renderExperience = () => {
     return (
-      <div>
+      <div className="py-5">
         <h2 className="text-2xl">Experience - 経験</h2>
         <div className="py-2">
           <span className="font-bold">2021 - 2023 Athena Web Developer</span> &nbsp; [Software Developer]
@@ -127,7 +122,7 @@ const Page = () => {
 
   const _renderContact = () => {
     return (
-      <div>
+      <div className="py-5">
         <h2 className="text-2xl">Contact - 接触</h2>
         <div className="my-2">
           <a href="https://www.facebook.com/Bosszanahub" target="_blank" className="text-xl hover:text-gray-300">
@@ -163,22 +158,12 @@ const Page = () => {
     <Loading loading={fakeLoading}>
       <div className="relative z-0 w-full p-5">
         {_renderProfile()}
-        <div className="py-3 md:flex">
-          <div className="w-full md:w-1/3"></div>
-          <div className="w-full md:w-2/3 md:px-10">{_renderPosition()}</div>
-        </div>
-        <div className="py-3 md:flex">
-          <div className="order-2 w-full md:order-1 md:w-1/3">
-            {_renderSkill()}
-            {_renderResource()}
-            {/* {_renderOtherSkill()} */}
-          </div>
-          <div className="order-1 w-full md:order-2 md:w-2/3 md:px-10">
-            <div className="my-2">{_renderEducation()}</div>
-            <div className="my-2">{_renderExperience()}</div>
-            <div className="my-2">{_renderContact()}</div>
-          </div>
-        </div>
+        {_renderPosition()}
+        {_renderSkill()}
+        {/* {_renderOtherSkill()} */}
+        {_renderEducation()}
+        {_renderExperience()}
+        {_renderContact()}
       </div>
     </Loading>
   );
