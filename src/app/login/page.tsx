@@ -4,7 +4,7 @@ import { Login, clientLogin, clientUserReset } from "@/services/user";
 import { RootStore } from "@/services";
 import { useToast } from "@/components/Toast";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { LuCheck, LuChevronUp, LuDog, LuLogIn } from "react-icons/lu";
+import { LuCheck, LuChevronDown, LuChevronUp, LuDog, LuLogIn } from "react-icons/lu";
 import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/services/hook";
 import { useNavigator } from "@/hooks";
@@ -71,13 +71,13 @@ const Page = () => {
   }, [user]);
 
   const onSubmit: SubmitHandler<LoginInputs> = (data) => {
-    // console.log(data);
+    console.log(data);
     const loginData: Login = {
       mobile_number: data.mobile_number,
       password: data.password,
       country_code: data.country_code,
     };
-    dispatch(clientLogin(loginData));
+    // dispatch(clientLogin(loginData));
   };
 
   // const handleSumbit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -105,24 +105,25 @@ const Page = () => {
   return (
     <div className="flex min-h-screen items-center justify-center">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h2 className="my-2 flex items-center justify-center text-2xl">
-          LOGIN ACCOUNT <LuDog className="ml-2" />
-        </h2>
-        <div className="mb-2 flex space-y-2">
-          <label>
-            Mobile Number &nbsp;
+        <div>
+          <h2 className="my-3 flex items-center justify-center text-2xl">
+            LOGIN ACCOUNT <LuDog className="ml-2" />
+          </h2>
+        </div>
+        <div className="mb-2 space-y-2">
+          <div className="text-sm">Mobile Number &nbsp;</div>
+          <div className="flex">
             <Combobox value={country} onChange={setCountry}>
-              <div className="relative my-2">
-                <div className="relative w-28 cursor-default overflow-hidden rounded-sm bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
+              <div className="relative">
+                <div className="relative w-28 cursor-default overflow-hidden rounded-br-none rounded-tl-sm bg-white text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
                   <Combobox.Input
                     className={"w-full border-none py-1 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"}
-                    displayValue={(country: CountryState) => `${country.name}`}
-                    // onChange={(event) => setQuery(event.target.value)}
+                    displayValue={(country: CountryState) => `${country.flag} ${country.name}`}
                     readOnly
                     {...register("country_code", { required: "country code field is required" })}
                   />
                   <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
-                    <LuChevronUp className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                    <LuChevronDown className="h-5 w-5 text-gray-400" aria-hidden="true" />
                   </Combobox.Button>
                 </div>
                 <Transition
@@ -170,24 +171,22 @@ const Page = () => {
               </div>
             </Combobox>
             <input
-              className="rounded-sm text-black"
+              className="rounded-bl-none rounded-tl-none indent-2 text-sm text-black"
               type="text"
-              {...register("mobile_number", { required: "mobile number field is required", maxLength: 10 })}
+              {...register("mobile_number", { required: "mobile number field is required" })}
             />
-            <div className="text-red-500">{errors && errors.country_code?.message}</div>
-            <div className="text-red-500">{errors && errors.mobile_number?.message}</div>
-          </label>
+          </div>
+          <div className="text-red-500">{errors && errors.country_code?.message}</div>
+          <div className="text-red-500">{errors && errors.mobile_number?.message}</div>
         </div>
-        <div className="flex space-y-2">
-          <label>
-            Password &nbsp;
-            <input
-              type="password"
-              {...register("password", { required: "password field is required" })}
-              className="rounded-sm text-black"
-            />
-            <div className="text-red-500">{errors && errors.password?.message}</div>
-          </label>
+        <div className="mb-2 space-y-2">
+          <div>Password &nbsp;</div>
+          <input
+            type="password"
+            {...register("password", { required: "password field is required" })}
+            className="rounded-sm indent-2 text-black focus:outline-none"
+          />
+          <div className="text-red-500">{errors && errors.password?.message}</div>
         </div>
         {/* <div className="mb-2 space-y-2">
           <Input
@@ -208,7 +207,9 @@ const Page = () => {
           <div>{errors && errors.password?.message}</div>
         </div> */}
         <button className="btn-primary mx-auto my-3 flex w-full items-center justify-center" type="submit">
-          <LuLogIn className="mr-1" /> Login
+          <span className="flex items-center">
+            <LuLogIn className="mr-1" /> Login
+          </span>
         </button>
       </form>
     </div>

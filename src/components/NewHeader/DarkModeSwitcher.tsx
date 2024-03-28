@@ -1,16 +1,17 @@
 "use client";
 
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { LuMoon, LuSun } from "react-icons/lu";
 import { ThemeContext } from "../ThemeProvider";
 
 const DarkModeSwitcher = () => {
+  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useContext(ThemeContext);
   const isDark = theme === "dark";
 
-  useEffect(() => {}, [theme]);
-  // const [colorMode, setColorMode] = useColorMode();
-  // console.log(colorMode);
+  useEffect(() => {
+    setMounted(theme === "dark");
+  }, [theme]);
 
   return (
     <label
@@ -29,17 +30,7 @@ const DarkModeSwitcher = () => {
         className={`shadow-switcher absolute left-[3px] top-1/2 flex h-8 w-8 -translate-y-1/2 translate-x-0 items-center justify-center rounded-full shadow-md duration-75
         ease-linear dark:bg-slate-800 ${isDark ? "translate-x-10" : "translate-x-0"}`}
       >
-        <span>
-          {theme == "dark" ? (
-            <>
-              <LuMoon />
-            </>
-          ) : (
-            <>
-              <LuSun />
-            </>
-          )}
-        </span>
+        {theme === "dark" && mounted ? <LuMoon /> : <LuSun />}
       </span>
     </label>
   );
